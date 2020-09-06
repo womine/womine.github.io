@@ -1,37 +1,32 @@
-## Welcome to GitHub Pages
+# Java-开发工程师-朱凌峰
+## 个人信息
 
-You can use the [editor on GitHub](https://github.com/womine/womine.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+年龄: 27
+学历: 大专
+现所在地: 成都
+工作经验: 三年
+电话:18502807464
+邮箱: 742246336@qq.com
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## 专业技能
+1. 扎实的JAVA基础知识，熟悉IO, 多线程, POI, 反射等知识
+2. 熟悉idea、eclipse等开发工具
+3. 熟悉js，jQuery等前端知识
+4. 熟悉目前流行的框架，如：Spring，SpringMVC，SpringBoot，MyBatis等
+5. 熟悉MySQL， redis 
+6. 了解SVN，Xshell等工具的使用
 
-### Markdown
+## 项目经验
+### 清镇人影智能指挥系统 (2019.11~2020.03)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### 四川应急物资仓储管理系统 (2019.08~2019.09)
 
-```markdown
-Syntax highlighted code block
+### 海南物资管理平台 (2019.08~2019.09)
 
-# Header 1
-## Header 2
-### Header 3
+### 山西声讯预警发布系统 (2019.05~2019.06)
 
-- Bulleted
-- List
+### 沃生活 (2018.05~2019.04)
 
-1. Numbered
-2. List
+### 华海云商项目 (2017.11~2018.04)
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/womine/womine.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## 工作经验
