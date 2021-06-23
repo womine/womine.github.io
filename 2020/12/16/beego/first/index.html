@@ -17,7 +17,7 @@
   <meta name="description" content="朱凌峰">
   <meta name="author" content="朱凌峰">
   <meta name="keywords" content="">
-  <title>git常用命令 - womine</title>
+  <title>beego2学习 - womine</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -160,8 +160,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-12-13 18:31" pubdate>
-        2020年12月13日 晚上
+      <time datetime="2020-12-16 19:57" pubdate>
+        2020年12月16日 晚上
       </time>
     </span>
   
@@ -172,7 +172,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      94 字
+      1.3k 字
     </span>
   
 
@@ -182,7 +182,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      32
        分钟
     </span>
   
@@ -212,15 +212,113 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">git常用命令</h1>
+            <h1 style="display: none">beego2学习</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h1><h2 id="删除远程分支-分支名称-darft"><a href="#删除远程分支-分支名称-darft" class="headerlink" title="删除远程分支(分支名称: darft)"></a>删除远程分支(分支名称: darft)</h2><p><code>git push origin --delete darft</code></p>
-<h2 id="增加文件到办本地"><a href="#增加文件到办本地" class="headerlink" title="增加文件到办本地:"></a>增加文件到办本地:</h2><p><code>git add [文件名]</code></p>
-<h2 id="提交到本地"><a href="#提交到本地" class="headerlink" title="提交到本地:"></a>提交到本地:</h2><p><code>git commit -m &quot;备注&quot;</code> (<strong>备注必须存在, 随便写点都可以</strong>)</p>
-<h2 id="提交到远程"><a href="#提交到远程" class="headerlink" title="提交到远程:"></a>提交到远程:</h2><p><code>git push</code></p>
-<h2 id="从远程仓库获取最新的版本到本地的-tmp-分支上"><a href="#从远程仓库获取最新的版本到本地的-tmp-分支上" class="headerlink" title="从远程仓库获取最新的版本到本地的 tmp 分支上"></a>从远程仓库获取最新的版本到本地的 tmp 分支上</h2><p><code>git fetch</code></p>
-<h2 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h2><p><code>git merge</code></p>
+              <p><code>Beego2</code> 的学习, 采用 <code>golang</code> 的 modules 模式管理项目<br>环境介绍:</p>
+<ol>
+<li>window 10 64位 家庭版</li>
+</ol>
+<h1 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h1><p>安装 <code>golang</code> 语言环境</p>
+<h2 id="官网下载Golang"><a href="#官网下载Golang" class="headerlink" title="官网下载Golang"></a>官网下载Golang</h2><p>下载地址: <a target="_blank" rel="noopener" href="https://golang.google.cn/dl/">https://golang.google.cn/dl/</a>, 我是 window 10 的, 所以下载 “go1.15.6.windows-amd64.zip” 的类型</p>
+<p>解压后, 放到 ‘F:\language\golang_1.15.6’ 目录下:<br><img src="/img/beego/2020121620231001.png" srcset="/img/loading.gif" alt="目录"></p>
+<p>但是, 需要配置 <code>go</code> 的环境变量<br><img src="/img/beego/2020121620421002.png" srcset="/img/loading.gif" alt="环境变量"></p>
+<p>从这儿就能看出, 环境变量就是我们解压出来 <code>go</code> 目录下的 <code>bin</code> 目录. <code>bin</code> 里面有我们需要执行的 go.exe, 后面的命令我们都会用到这个的</p>
+<p>环境变量配置好了以后, 就可以在桌面打开命令窗口, 直接输入: </p>
+<pre><code class="hljs vim"><span class="hljs-keyword">go</span> <span class="hljs-keyword">version</span></code></pre>
+<p>控制就会弹出 <code>go</code> 的版本号</p>
+<pre><code class="hljs apache"><span class="hljs-attribute">go</span> version go<span class="hljs-number">1</span>.<span class="hljs-number">15</span>.<span class="hljs-number">6</span> windows/amd<span class="hljs-number">64</span></code></pre>
+<p>这就说明我们还是安装成功了的.</p>
+<h2 id="Go-modules"><a href="#Go-modules" class="headerlink" title="Go modules"></a>Go modules</h2><p>网上很多 <code>go</code> modules 的教程, 废话不多说, 提出关键信息:</p>
+<blockquote>
+<ul>
+<li>要使用go module 首先要设置GO111MODULE=on，</li>
+<li>GO111MODULE 有三个值，off、on、auto，</li>
+<li>off 和 on 即关闭和开启，</li>
+<li>auto 则会根据当前目录下是否有 go.mod 文件来判断是否使用 modules 功能。</li>
+<li>无论使用哪种模式，module 功能默认不在 GOPATH 目录下查找依赖文件，</li>
+<li>所以使用 modules 功能时请设置好代理。</li>
+</ul>
+</blockquote>
+<p>首先, 我们在控制台执行 </p>
+<pre><code class="hljs dockerfile">go <span class="hljs-keyword">env</span></code></pre>
+<p>输出信息我们能看到关键的的 <code>GO111MODULE</code> 和 <code>GOPATH</code>:<br><img src="/img/beego/2020121621111003.png" srcset="/img/loading.gif" alt="env"><br><code>GO111MODULE</code> 是为空的, 说明没开启,<br><code>GOPATH</code> 是系统默认的.</p>
+<p>OK, 先修改 <code>gopath</code>: 控制台中输入命令:</p>
+<pre><code class="hljs elm"><span class="hljs-title">go</span> env -w <span class="hljs-type">GOPATH</span>=<span class="hljs-type">F</span>:\sup<span class="hljs-keyword">port</span>\gopath_</code></pre>
+<p>然后是开启 go modules:<br>直接在命令行中执行:</p>
+<pre><code class="hljs apache"><span class="hljs-attribute">go</span> env -w GO<span class="hljs-number">111</span>MODULE=<span class="hljs-literal">on</span></code></pre>
+<p>最后再来看效果:<br><img src="/img/beego/2020121621371005.png" srcset="/img/loading.gif" alt="png"><br>可以看到: 修改gopath后,另一个参数也变了, 为什么会变? 我也不知道┑(￣Д ￣)┍</p>
+<blockquote>
+<p>注意:<br>由于golang是google家的, 默认用的国外服务器, 可能要翻墙, 所以需要修改代理为国内的的.<br>直接在命令行执行:</p>
+<pre><code class="hljs vim"><span class="hljs-keyword">go</span> env -<span class="hljs-keyword">w</span> GOPROXY=http<span class="hljs-variable">s:</span>//goproxy.<span class="hljs-keyword">cn</span></code></pre>
+</blockquote>
+<p>至此, golang环境基本配置OK o(<em>￣▽￣</em>)ブ</p>
+<h1 id="安装Beego"><a href="#安装Beego" class="headerlink" title="安装Beego"></a>安装Beego</h1><p>先找个空的文件夹 “F:\project\beego\hellov2”<br>然后在这个文件夹中打开控制台, 输入 </p>
+<pre><code class="hljs vim"><span class="hljs-keyword">go</span> <span class="hljs-built_in">get</span> -<span class="hljs-keyword">u</span> github.<span class="hljs-keyword">com</span>/beego/beego/v2</code></pre>
+<p>执行完毕后, 我们在 hellov2 文件夹中开不到任何东西, 然后在 <code>gopath</code> 指定的文件夹中会多出一个 <code>pkg</code> 文件夹<br>为什么呢? 我还是不知道 ┑(￣Д ￣)┍</p>
+<p>然后我用命令初始化了一个 <code>module</code></p>
+<pre><code class="hljs maxima"><span class="hljs-built_in">go</span> <span class="hljs-built_in">mod</span> init hellov2</code></pre>
+<p>这儿 <code>hellov2</code> 其实也是项目名, 初始化后, hellov2 文件夹总会多一个 <code>go.mod</code> 的文件, 文件中内容:<br><img src="/img/beego/2020121621591006.png" srcset="/img/loading.gif"></p>
+<p>然后执行 <code>beego</code> 官网上的安装命令:</p>
+<pre><code class="hljs vim">$ <span class="hljs-keyword">go</span> <span class="hljs-built_in">get</span> -<span class="hljs-keyword">u</span> github.<span class="hljs-keyword">com</span>/beego/beego/v2
+$ <span class="hljs-keyword">go</span> <span class="hljs-built_in">get</span> -<span class="hljs-keyword">u</span> github.<span class="hljs-keyword">com</span>/beego/bee/v2</code></pre>
+<p>执行结束后, 你会返现 go.mod 里面有 <code>require</code> 了, 然后还多了一个 go.sum 文件,<br>这个俩个文件有啥用, 我也不知大, 明天再来看吧 <span style="color: #3390a0; backgroup-color: #3390a0;">`┗|｀O′|┛ 嗷~~</span></p>
+<p>2020-12-19 接着来</p>
+<p>上次我们通过 <code>beego</code> 官网的快速入门知道了俩条命令:</p>
+<pre><code class="hljs vim"><span class="hljs-keyword">go</span> <span class="hljs-built_in">get</span> -<span class="hljs-keyword">u</span> github.<span class="hljs-keyword">com</span>/beego/beego/v2
+<span class="hljs-keyword">go</span> <span class="hljs-built_in">get</span> -<span class="hljs-keyword">u</span> github.<span class="hljs-keyword">com</span>/beego/bee/v2</code></pre>
+<p>这俩条命令执行了就发现在 <code>%gopath%/pkg/mod/</code> 多了一堆包, 看名称估计应该就是 <code>beego</code> 依赖相关的包吧</p>
+<p>然后 <code>hellov2</code> 文件中并没有多任何包, 同时, 自己创建了一个 <code>src/main/main.go</code> 文件, 执行</p>
+<pre><code class="hljs latex">go build .<span class="hljs-tag">\<span class="hljs-name">src</span></span><span class="hljs-tag">\<span class="hljs-name">main</span></span><span class="hljs-tag">\<span class="hljs-name">main</span></span>.go</code></pre>
+<p>命令, 反而提示我找不到 ‘github.com/beego/beego/v2/server/web’ 包时, 我就知道, 肯定是哪儿没对<br>按照网上教程说的, go modules 应该会在当前项目里面管理, 然后当前项目并没有 包,<br>按照教程, 我又执行了 </p>
+<pre><code class="hljs maxima"><span class="hljs-built_in">go</span> <span class="hljs-built_in">mod</span> download</code></pre>
+<p>并没有任何变化; 于是再次执行:</p>
+<pre><code class="hljs maxima"><span class="hljs-built_in">go</span> <span class="hljs-built_in">mod</span> vendor</code></pre>
+<p><code>hellov2</code> 中多了一个 <code>vendor</code> 文件夹, 里面还多了一个 <code>modules.txt</code> ; 但是依然没有依赖包,<br>于是我再次执行了 <code>go mod vendor</code> 指令后, <code>vendor</code> 中多了好几个包, 看来是成功了.</p>
+<p>接着执行:</p>
+<pre><code class="hljs latex">go build .<span class="hljs-tag">\<span class="hljs-name">src</span></span><span class="hljs-tag">\<span class="hljs-name">main</span></span><span class="hljs-tag">\<span class="hljs-name">main</span></span>.go</code></pre>
+<p>执行结束后, 在 <code>hellov2</code> 文件夹多了个 <code>main.exe</code> 文件, 直接在控制台运行, 就完成了</p>
+<h2 id="汇总一下"><a href="#汇总一下" class="headerlink" title="汇总一下"></a>汇总一下</h2><p>好了, 上面说了那么多过程废话, 下面窝馒来汇总一下, 结合 <code>beego</code> 官网的 快速入门, 第一个 <code>beego</code> “hello word” 过程:  </p>
+<blockquote>
+<p>说明下: 我的环境是 window 10 的, 所有过程都是按照 window 10 的来做的.</p>
+</blockquote>
+<ol>
+<li>在任何地方创建一个文件夹(假如项目名叫: <code>hellobeego</code>, 我们可以创建一个 <code>hellobeego</code> 的文件夹);</li>
+<li>进入 <code>hellobeego</code> 文件夹, 打开控制台窗口;</li>
+<li>执行初始化 modules 的命令: <code>go mod init hellobeego</code> (这儿 hellobeego 是项目名, 又什么用, 还暂时不知道 ,,ԾㅂԾ,, );</li>
+<li>创建一个 <code>main.go</code> 文件, 里面就写 beego 官网快速入门里面 ‘简单示例’ 的代码就好了;</li>
+<li>执行检测依赖命令: <code>go mod tidy</code>;</li>
+<li>执行下载依赖命令: <code>go mod download</code>;</li>
+<li>执行导入依赖命令: <code>go mod vendor</code>;</li>
+<li>执行go编译命令: <code>go build main.go</code>;</li>
+<li>编译后就有个 <code>main.exe</code> 文件, 然后直接执行这个exe文件;</li>
+<li>访问 <code>localhost:8080/</code> 页面就有 <code>hello word</code> 了;</li>
+</ol>
+<h2 id="继续"><a href="#继续" class="headerlink" title="继续"></a>继续</h2><p>beego 官网上是有 beego 的文件结构的, 我们按照他的文件目录创建一个</p>
+<pre><code class="hljs ada">quickstart
+|<span class="hljs-comment">-- conf</span>
+|   `<span class="hljs-comment">-- app.conf</span>
+|<span class="hljs-comment">-- controllers</span>
+|   `<span class="hljs-comment">-- default.go</span>
+|<span class="hljs-comment">-- main.go</span>
+|<span class="hljs-comment">-- models</span>
+|<span class="hljs-comment">-- routers</span>
+|   `<span class="hljs-comment">-- router.go</span>
+|<span class="hljs-comment">-- static</span>
+|   |<span class="hljs-comment">-- css</span>
+|   |<span class="hljs-comment">-- img</span>
+|   `<span class="hljs-comment">-- js</span>
+|<span class="hljs-comment">-- tests</span>
+|   `<span class="hljs-comment">-- default_test.go</span>
+`<span class="hljs-comment">-- views</span>
+    `<span class="hljs-comment">-- index.tpl</span></code></pre>
+
+
+
+
+
+
+
 
             </div>
             <hr>
@@ -230,7 +328,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/git/">git</a>
+                      <a class="hover-with-bg" href="/categories/golang/">golang</a>
                     
                   </div>
                 
@@ -238,9 +336,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/git/">git</a>
+                      <a class="hover-with-bg" href="/tags/golang/">golang</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%91%BD%E4%BB%A4/">命令</a>
+                      <a class="hover-with-bg" href="/tags/beego/">beego</a>
                     
                   </div>
                 
@@ -253,18 +351,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/12/16/react/%E5%88%9B%E5%BB%BAnext/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">创建next.js</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/10/01/hello-world/">
-                        <span class="hidden-mobile">第一个博客</span>
+                      <a href="/2020/12/16/react/%E5%88%9B%E5%BB%BAnext/">
+                        <span class="hidden-mobile">创建next.js</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -392,7 +484,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "git常用命令&nbsp;",
+        "beego2学习&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 100,

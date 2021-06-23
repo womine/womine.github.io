@@ -17,7 +17,7 @@
   <meta name="description" content="朱凌峰">
   <meta name="author" content="朱凌峰">
   <meta name="keywords" content="">
-  <title>我就是我, 不一样的烟火 o(*￣▽￣*)ブ - womine</title>
+  <title>创建next.js - womine</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -56,7 +56,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -155,6 +155,43 @@
             </span>
 
             
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-12-16 19:57" pubdate>
+        2020年12月16日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      286 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
           </div>
 
           
@@ -165,27 +202,130 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-<div class="page-content">
-  <h2 id="朱凌峰"><a href="#朱凌峰" class="headerlink" title="朱凌峰"></a>朱凌峰</h2><p><strong>英文名称</strong>: ZhuLingfeng</p>
-<p>一位没事儿就看动漫的的代码搬运工 []~(￣▽￣)~*</p>
-<h2 id="特长"><a href="#特长" class="headerlink" title="特长"></a>特长</h2><p><code>Ctrl + C</code>, <code>Ctrl + V</code> ♪(^∇^*)</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">创建next.js</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>创建一个 next.js 项目</p>
+<h1 id="初始化一个-node-项目"><a href="#初始化一个-node-项目" class="headerlink" title="初始化一个 node 项目"></a>初始化一个 node 项目</h1><p>命令:</p>
+<pre><code class="hljs shell">npm init</code></pre>
+<p>初始化以后会有一个 <code>package.json</code><br>在 <code>package.josn</code> 中配置:</p>
+<pre><code class="hljs json">&#123;
+  <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;womine.index&quot;</span>,
+  <span class="hljs-attr">&quot;version&quot;</span>: <span class="hljs-string">&quot;1.0.0&quot;</span>,
+  <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
+  <span class="hljs-attr">&quot;main&quot;</span>: <span class="hljs-string">&quot;index.js&quot;</span>,
+  <span class="hljs-attr">&quot;scripts&quot;</span>: &#123;
+    <span class="hljs-attr">&quot;test&quot;</span>: <span class="hljs-string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>,
+    <span class="hljs-attr">&quot;dev&quot;</span>: <span class="hljs-string">&quot;next&quot;</span>,
+    <span class="hljs-attr">&quot;build&quot;</span>: <span class="hljs-string">&quot;next build&quot;</span>,
+    <span class="hljs-attr">&quot;start&quot;</span>: <span class="hljs-string">&quot;next start -p 8080&quot;</span>
+  &#125;,
+  <span class="hljs-attr">&quot;author&quot;</span>: <span class="hljs-string">&quot;womine&quot;</span>,
+  <span class="hljs-attr">&quot;license&quot;</span>: <span class="hljs-string">&quot;ISC&quot;</span>,
+  <span class="hljs-attr">&quot;dependencies&quot;</span>: &#123;
+    <span class="hljs-attr">&quot;@zeit/next-css&quot;</span>: <span class="hljs-string">&quot;^1.0.1&quot;</span>,
+    <span class="hljs-attr">&quot;antd&quot;</span>: <span class="hljs-string">&quot;^4.8.0&quot;</span>,
+    <span class="hljs-attr">&quot;babel-plugin-import&quot;</span>: <span class="hljs-string">&quot;^1.13.1&quot;</span>,
+    <span class="hljs-attr">&quot;moment&quot;</span>: <span class="hljs-string">&quot;^2.29.1&quot;</span>,
+    <span class="hljs-attr">&quot;next&quot;</span>: <span class="hljs-string">&quot;^9.5.5&quot;</span>,
+    <span class="hljs-attr">&quot;react&quot;</span>: <span class="hljs-string">&quot;^17.0.1&quot;</span>,
+    <span class="hljs-attr">&quot;react-dom&quot;</span>: <span class="hljs-string">&quot;^17.0.1&quot;</span>
+  &#125;
+&#125;</code></pre>
 
-</div>
+<p>根目录创建文件夹 <code>pages</code>, <code>components</code>, <code>public</code><br>在 <code>pages</code> 中创建文件 <code>index.ts</code><br>这个 <code>index.ts</code> 就是我们项目的主页了</p>
+<p>然后执行命令;</p>
+<pre><code class="hljs shell">npm run build</code></pre>
+<p>build结束后, 执行</p>
+<pre><code class="hljs shell">npm run start</code></pre>
+<p>然后访问: localhost:8080<br>当然, 也可以用命令</p>
+<pre><code class="hljs shell">npm run dev</code></pre>
+<p>然后访问 localhost:3000 访问开发版本, 开发版本可以动态更新, 适合开发的时候用.</p>
 
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/react/">react</a>
+                    
+                      <a class="hover-with-bg" href="/categories/react/next-js/">next.js</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/react/">react</a>
+                    
+                      <a class="hover-with-bg" href="/tags/next-js/">next.js</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/12/16/beego/first/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">beego2学习</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/12/13/git/gitorder/">
+                        <span class="hidden-mobile">git常用命令</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -252,6 +392,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -259,7 +424,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "我就是我, 不一样的烟火 o(*￣▽￣*)ブ&nbsp;",
+        "创建next.js&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 100,
@@ -294,6 +459,20 @@
 
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
