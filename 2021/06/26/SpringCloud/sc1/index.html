@@ -172,7 +172,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      138 字
+      408 字
     </span>
   
 
@@ -182,7 +182,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      9
        分钟
     </span>
   
@@ -215,12 +215,21 @@
             <h1 style="display: none">SpringCloud学习(组件列表)</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="服务注册与发现"><a href="#服务注册与发现" class="headerlink" title="服务注册与发现"></a>服务注册与发现</h1><h2 id="Nacos"><a href="#Nacos" class="headerlink" title="Nacos"></a>Nacos</h2><p>一个更易于构建云原生应用的 <code>动态服务发现</code> 、 <code>配置管理</code> 和 <code>服务管理</code> 平台。</p>
+              <h1 id="服务注册与发现"><a href="#服务注册与发现" class="headerlink" title="服务注册与发现"></a>服务注册与发现</h1><h2 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h2><p>Eureka Client：负责将这个服务的信息注册到Eureka Server中</p>
+<p>Eureka Server：注册中心，里面有一个注册表，保存了各个服务所在的机器和端口号</p>
+<h2 id="Nacos"><a href="#Nacos" class="headerlink" title="Nacos"></a>Nacos</h2><p>一个更易于构建云原生应用的 <code>动态服务发现</code> 、 <code>配置管理</code> 和 <code>服务管理</code> 平台。</p>
 <h3 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h3><p>用 nacos 做 SPringBoot 的配置管理时, 每次修改了配置信息, SpringBoot 控制台会输出一条日志, 格式如下:</p>
 <pre><code class="hljs gherkin">Replacing PropertySource &#x27;resume|<span class="hljs-string">DEFAULT_GROUP</span>|||<span class="hljs-string">127.0.0.1:8848</span>|||||<span class="hljs-string">UTF-8</span>||<span class="hljs-string">&#x27; with &#x27;resume</span>|<span class="hljs-string">DEFAULT_GROUP</span>|||<span class="hljs-string">127.0.0.1:8848</span>|||||<span class="hljs-string">UTF-8</span>||<span class="hljs-string">&#x27;</span></code></pre>
 
 <h2 id="Consul"><a href="#Consul" class="headerlink" title="Consul"></a>Consul</h2><p>Consul包含多个组件,但是作为一个整体,为你的基础设施提供 <code>服务发现</code> 和 <code>服务配置</code> 的工具。</p>
-<h1 id="API网关"><a href="#API网关" class="headerlink" title="API网关"></a>API网关</h1><h2 id="Kong"><a href="#Kong" class="headerlink" title="Kong"></a>Kong</h2><h2 id="Getwagy"><a href="#Getwagy" class="headerlink" title="Getwagy"></a>Getwagy</h2><h2 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h2>
+<h1 id="API网关"><a href="#API网关" class="headerlink" title="API网关"></a>API网关</h1><h2 id="Kong"><a href="#Kong" class="headerlink" title="Kong"></a>Kong</h2><h2 id="Getwagy"><a href="#Getwagy" class="headerlink" title="Getwagy"></a>Getwagy</h2><h2 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h2><h1 id=""><a href="#" class="headerlink" title="??"></a>??</h1><p>Eureka：<br>各个服务启动时，Eureka Client都会将服务注册到Eureka Server，并且Eureka Client还可以反过来从Eureka Server拉取注册表，从而知道其他服务在哪里</p>
+<p>Ribbon：<br>服务间发起请求的时候，基于Ribbon做负载均衡，从一个服务的多台机器中选择一台</p>
+<p>Feign：<br>基于Feign的动态代理机制，根据注解和选择的机器，拼接请求URL地址，发起请求</p>
+<p>Hystrix：<br>发起请求是通过Hystrix的线程池来走的，不同的服务走不同的线程池，实现了不同服务调用的隔离，避免了服务雪崩的问题</p>
+<p>Zuul：<br>如果前端、移动端要调用后端系统，统一从Zuul网关进入，由Zuul网关转发请求给对应的服务</p>
+<h2 id="Feign"><a href="#Feign" class="headerlink" title="Feign"></a>Feign</h2><h2 id="Hystrix"><a href="#Hystrix" class="headerlink" title="Hystrix"></a>Hystrix</h2><p>隔离、熔断以及降级的一个框架</p>
+<h2 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h2><p>作用是负载均衡</p>
+
             </div>
             <hr>
             <div>
