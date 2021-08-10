@@ -17,7 +17,7 @@
   <meta name="description" content="朱凌峰">
   <meta name="author" content="朱凌峰">
   <meta name="keywords" content="">
-  <title>SpringCloud学习(组件列表) - womine</title>
+  <title>设计模式 - womine</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -160,8 +160,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-06-26 12:43" pubdate>
-        2021年6月26日 下午
+      <time datetime="2021-08-10 21:31" pubdate>
+        2021年8月10日 晚上
       </time>
     </span>
   
@@ -172,7 +172,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      422 字
+      116 字
     </span>
   
 
@@ -182,7 +182,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      2
        分钟
     </span>
   
@@ -212,27 +212,10 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">SpringCloud学习(组件列表)</h1>
+            <h1 style="display: none">设计模式</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="服务注册与发现"><a href="#服务注册与发现" class="headerlink" title="服务注册与发现"></a>服务注册与发现</h1><h2 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h2><p>Eureka Client：负责将这个服务的信息注册到Eureka Server中</p>
-<p>Eureka Server：注册中心，里面有一个注册表，保存了各个服务所在的机器和端口号</p>
-<p>各个服务启动时，Eureka Client都会将服务注册到Eureka Server，并且Eureka Client还可以反过来从Eureka Server拉取注册表，从而知道其他服务在哪里</p>
-<h2 id="Nacos"><a href="#Nacos" class="headerlink" title="Nacos"></a>Nacos</h2><p>一个更易于构建云原生应用的 <code>动态服务发现</code> 、 <code>配置管理</code> 和 <code>服务管理</code> 平台。</p>
-<h3 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h3><p>用 nacos 做 SPringBoot 的配置管理时, 每次修改了配置信息, SpringBoot 控制台会输出一条日志, 格式如下:</p>
-<pre><code class="hljs gherkin">Replacing PropertySource &#x27;resume|<span class="hljs-string">DEFAULT_GROUP</span>|||<span class="hljs-string">127.0.0.1:8848</span>|||||<span class="hljs-string">UTF-8</span>||<span class="hljs-string">&#x27; with &#x27;resume</span>|<span class="hljs-string">DEFAULT_GROUP</span>|||<span class="hljs-string">127.0.0.1:8848</span>|||||<span class="hljs-string">UTF-8</span>||<span class="hljs-string">&#x27;</span></code></pre>
-
-<h2 id="Consul"><a href="#Consul" class="headerlink" title="Consul"></a>Consul</h2><p>Consul包含多个组件,但是作为一个整体,为你的基础设施提供 <code>服务发现</code> 和 <code>服务配置</code> 的工具。 </p>
-<h1 id="API网关"><a href="#API网关" class="headerlink" title="API网关"></a>API网关</h1><h2 id="Kong"><a href="#Kong" class="headerlink" title="Kong"></a>Kong</h2><h2 id="Getwagy"><a href="#Getwagy" class="headerlink" title="Getwagy"></a>Getwagy</h2><h2 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h2><p>如果前端、移动端要调用后端系统，统一从Zuul网关进入，由Zuul网关转发请求给对应的服务</p>
-<h1 id=""><a href="#" class="headerlink" title="??"></a>??</h1><p>Ribbon：<br>服务间发起请求的时候，基于Ribbon做负载均衡，从一个服务的多台机器中选择一台</p>
-<h2 id="Feign"><a href="#Feign" class="headerlink" title="Feign"></a>Feign</h2><p>动态代理，</p>
-<p>声明式Restful调用</p>
-<p>基于Feign的动态代理机制，根据注解和选择的机器，拼接请求URL地址，发起请求</p>
-<h2 id="Hystrix"><a href="#Hystrix" class="headerlink" title="Hystrix"></a>Hystrix</h2><p>隔离、熔断以及降级的一个框架</p>
-<p>发起请求是通过Hystrix的线程池来走的，不同的服务走不同的线程池，实现了不同服务调用的隔离，避免了服务雪崩的问题</p>
-<h2 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h2><p>作用是负载均衡</p>
-<p>客户端负载均衡</p>
-
+              <h1 id="创建型"><a href="#创建型" class="headerlink" title="创建型"></a>创建型</h1><h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><h2 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h2><h1 id="结构型"><a href="#结构型" class="headerlink" title="结构型"></a>结构型</h1><h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><h2 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h2><h2 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h2><h2 id="装饰模式"><a href="#装饰模式" class="headerlink" title="装饰模式"></a>装饰模式</h2><h2 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h2><h2 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h2><h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><h1 id="行为型"><a href="#行为型" class="headerlink" title="行为型"></a>行为型</h1><h2 id="职责链模式"><a href="#职责链模式" class="headerlink" title="职责链模式"></a>职责链模式</h2><h2 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h2><h2 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h2><h2 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h2><h2 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h2><h2 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h2><h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><h2 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h2><h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><h2 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h2><h2 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h2>
             </div>
             <hr>
             <div>
@@ -241,9 +224,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/SpringCloud/">SpringCloud</a>
-                    
-                      <a class="hover-with-bg" href="/categories/SpringCloud/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a>
+                      <a class="hover-with-bg" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
                     
                   </div>
                 
@@ -251,9 +232,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/SpringCloud/">SpringCloud</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a>
+                      <a class="hover-with-bg" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
                     
                   </div>
                 
@@ -266,18 +245,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/08/10/designpatterns/first/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">设计模式</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/12/16/beego/first/">
-                        <span class="hidden-mobile">beego2学习</span>
+                      <a href="/2021/06/26/SpringCloud/sc1/">
+                        <span class="hidden-mobile">SpringCloud学习(组件列表)</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -405,7 +378,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "SpringCloud学习(组件列表)&nbsp;",
+        "设计模式&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 100,
