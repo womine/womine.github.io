@@ -172,7 +172,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      134 字
+      338 字
     </span>
   
 
@@ -182,7 +182,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      8
        分钟
     </span>
   
@@ -228,6 +228,23 @@
 <h3 id="部署到远程站点"><a href="#部署到远程站点" class="headerlink" title="部署到远程站点"></a>部署到远程站点</h3><pre><code class="hljs bash">$ hexo deploy</code></pre>
 <p>可以简写成: <code>hexo d</code></p>
 <p>更多站点: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h1 id="2021-11-29"><a href="#2021-11-29" class="headerlink" title="2021-11-29"></a>2021-11-29</h1><p>今天部署博客到github, 但是呢, 一直部署不上去, 先是提示什么SSL错误, 然后我找到网上一个<a target="_blank" rel="noopener" href="https://blog.csdn.net/Candle_light/article/details/114992784">教程</a>;<br>前面的都做完了, 就差最后一步:设置<code>repository</code>没执行.<br>我想: 我本地用的<code>repo</code>, 如下:</p>
+<pre><code class="hljs yml"><span class="hljs-attr">deploy:</span>
+    <span class="hljs-attr">type:</span> <span class="hljs-string">git</span>
+    <span class="hljs-attr">repo:</span> <span class="hljs-string">https://github.com/womine/womine.github.io</span>
+    <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">womine</span></code></pre>
+<p>而且, <code>hexo-deployer-git</code> 中的<a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-deployer-git">示例</a>也是用的<code>repo</code>, 应该可以噻!<br>然后我就不执行了, 结果还是出错, 试了又试, 始终不行, 迫于无奈, 还是改成了<code>repository</code>, 最后<code>_config.yml</code>部分配置如下:</p>
+<pre><code class="hljs yml"><span class="hljs-attr">deploy:</span>
+  <span class="hljs-attr">type:</span> <span class="hljs-string">git</span>
+  <span class="hljs-comment"># repo: https://github.com/womine/womine.github.io</span>
+  <span class="hljs-attr">repository:</span> <span class="hljs-string">git@github.com:womine/womine.github.io.git</span>
+  <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span>
+  <span class="hljs-attr">name:</span> <span class="hljs-string">womine</span>
+  <span class="hljs-attr">email:</span> <span class="hljs-string">XXXXXXXXXXXXXXXXXXXXXXXX@XX.XXX</span>
+  <span class="hljs-attr">token:</span> <span class="hljs-string">demo_demo_demo</span></code></pre>
+<p>然后执行 <code>hexo d</code>; ok, 成功了 ┑(￣Д ￣)┍.</p>
+<p>既然可以, 就先这样吧, 以后再查查为啥子了~</p>
 
             </div>
             <hr>
