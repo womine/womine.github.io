@@ -17,7 +17,7 @@
   <meta name="description" content="朱凌峰">
   <meta name="author" content="朱凌峰">
   <meta name="keywords" content="">
-  <title>我就是我, 不一样的烟火 o(*￣▽￣*)ブ - womine</title>
+  <title>SpringCloud日志 - womine</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -56,7 +56,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
+         style="background: url('/img/banner_1.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -165,6 +165,43 @@
             <span class="h2" id="subtitle">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-05 22:24" pubdate>
+        2021年12月5日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      384 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      12
+       分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -177,27 +214,187 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-<div class="page-content">
-  <h2 id="朱凌峰"><a href="#朱凌峰" class="headerlink" title="朱凌峰"></a>朱凌峰</h2><p><strong>英文名称</strong>: ZhuLingfeng</p>
-<p>一位没事儿就看动漫的的代码搬运工 []~(￣▽￣)~*</p>
-<h2 id="特长"><a href="#特长" class="headerlink" title="特长"></a>特长</h2><p><code>Ctrl + C</code>, <code>Ctrl + V</code> ♪(^∇^*)</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">SpringCloud日志</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="Spring-Cloud-2021-0-0-代号-Jubilee-已经发布"><a href="#Spring-Cloud-2021-0-0-代号-Jubilee-已经发布" class="headerlink" title="Spring Cloud 2021.0.0 (代号 Jubilee) 已经发布"></a>Spring Cloud 2021.0.0 (代号 Jubilee) 已经发布</h1><p>我很高兴地代表社区宣布，代号为 Jubilee 的 Spring Cloud 2021.0 的可用版本今天正式发布。该版本可以在 <a target="_blank" rel="noopener" href="https://repo1.maven.org/maven2/org/springframework/cloud/spring-cloud-dependencies/2021.0.0/">Maven Central</a> 中找到。您可以查看2021.0发布说明以<a target="_blank" rel="noopener" href="https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2021.0-Release-Notes">了解更多信息</a>。</p>
+<h2 id="2021-0-版本的显著变化"><a href="#2021-0-版本的显著变化" class="headerlink" title="2021.0 版本的显著变化"></a>2021.0 版本的显著变化</h2><p>021.0.0兼容Spring Boot 2.6.1</p>
+<h3 id="Spring-Cloud-Commons"><a href="#Spring-Cloud-Commons" class="headerlink" title="Spring Cloud Commons"></a>Spring Cloud Commons</h3><p>支持每个LoadBalancer配置属性(也添加到Gateway, Contract和OpenFeign)。</p>
+<h3 id="Spring-Cloud-Config"><a href="#Spring-Cloud-Config" class="headerlink" title="Spring Cloud Config"></a>Spring Cloud Config</h3><p>集成 AWS Secrets Manager，AWS 参数存储和 GCP Secrets Manager。</p>
+<h3 id="Spring-Cloud-Function"><a href="#Spring-Cloud-Function" class="headerlink" title="Spring Cloud Function"></a>Spring Cloud Function</h3><p>通过执行器端点支持gRPC, FunctionCatalog, AWS改进，CloudEvents等。你可以在这篇博文中<a target="_blank" rel="noopener" href="https://spring.io/blog/2021/12/02/spring-cloud-function-3-2-is-out">了解更多</a></p>
+<h3 id="Spring-Cloud-Gateway"><a href="#Spring-Cloud-Gateway" class="headerlink" title="Spring Cloud Gateway"></a>Spring Cloud Gateway</h3><ul>
+<li>Redis 路由库</li>
+<li>支持 HTTP 2</li>
+<li>支持 gRPC</li>
+</ul>
+<h3 id="Spring-Cloud-Kubernetes"><a href="#Spring-Cloud-Kubernetes" class="headerlink" title="Spring Cloud Kubernetes"></a>Spring Cloud Kubernetes</h3><p>配置服务器和发现控制器</p>
+<h3 id="Spring-Cloud-OpenFeign"><a href="#Spring-Cloud-OpenFeign" class="headerlink" title="Spring Cloud OpenFeign"></a>Spring Cloud OpenFeign</h3><p>支持<code>@Cachable</code></p>
+<h3 id="Spring-Cloud-Sleuth"><a href="#Spring-Cloud-Sleuth" class="headerlink" title="Spring Cloud Sleuth"></a>Spring Cloud Sleuth</h3><p>Instrumentation for Tomcat, Spring Vault, R2DBC, JDBC, Spring Cloud Deployer, Spring Cloud Skipper, Reactor Kafka, Spring TX, Spring Batch, RSocket, Spring Cloud Task, Spring Cloud Config, Kotlin Coroutines, and more.</p>
+<h3 id="Spring-Cloud-Stream"><a href="#Spring-Cloud-Stream" class="headerlink" title="Spring Cloud Stream"></a>Spring Cloud Stream</h3><p>在这个版本中，core、Kafka和Rabbit绑定器之间已经解决了大约100个问题。</p>
+<p>以下模块作为2021.0.0的一部分进行了更新:</p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Spring Cloud Vault</td>
+<td>3.1.0</td>
+</tr>
+<tr>
+<td>Spring Cloud Bus</td>
+<td>3.1.0</td>
+</tr>
+<tr>
+<td>Spring Cloud Cli</td>
+<td>3.1.0</td>
+</tr>
+<tr>
+<td>Spring Cloud Zookeeper</td>
+<td>3.1.0</td>
+</tr>
+<tr>
+<td>Spring Cloud Circuitbreaker</td>
+<td>2.1.0</td>
+</tr>
+<tr>
+<td>Spring Cloud Commons</td>
+<td>3.1.0</td>
+</tr>
+<tr>
+<td>Spring Cloud Kubernetes</td>
+<td>2.1.0</td>
+</tr>
+<tr>
+<td>Spring Cloud OpenFeign</td>
+<td>3.1.0</td>
+</tr>
+<tr>
+<td>Spring Cloud Task</td>
+<td>2.4.0</td>
+</tr>
+<tr>
+<td>Spring Cloud Sleuth</td>
+<td>3.1.0</td>
+</tr>
+<tr>
+<td>Spring Cloud Contract</td>
+<td>3.1.0</td>
+</tr>
+<tr>
+<td>Spring Cloud Consul</td>
+<td>3.1.0</td>
+</tr>
+<tr>
+<td>Spring Cloud Function</td>
+<td>3.2.1</td>
+</tr>
+<tr>
+<td>Spring Cloud Stream</td>
+<td>3.2.1</td>
+</tr>
+<tr>
+<td>Spring Cloud Gateway</td>
+<td>3.1.0</td>
+</tr>
+<tr>
+<td>Spring Cloud Config</td>
+<td>3.1.0</td>
+</tr>
+<tr>
+<td>Spring Cloud Cloudfoundry</td>
+<td>3.1.0</td>
+</tr>
+<tr>
+<td>Spring Cloud Starter Build</td>
+<td>2021.0.0</td>
+</tr>
+<tr>
+<td>Spring Cloud Netflix</td>
+<td>3.1.0</td>
+</tr>
+</tbody></table>
 
-</div>
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/SpringCloud/">SpringCloud</a>
+                    
+                      <a class="hover-with-bg" href="/categories/SpringCloud/%E6%97%A5%E5%BF%97/">日志</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/SpringCloud/">SpringCloud</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%97%A5%E5%BF%97/">日志</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/10/designpatterns/first/">
+                        <span class="hidden-mobile">设计模式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -287,6 +484,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -294,7 +516,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "我就是我, 不一样的烟火 o(*￣▽￣*)ブ&nbsp;",
+        "SpringCloud日志&nbsp;",
       ],
       cursorChar: "|",
       typeSpeed: 100,
@@ -329,6 +551,20 @@
 
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
