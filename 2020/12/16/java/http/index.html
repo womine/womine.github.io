@@ -17,7 +17,7 @@
   <meta name="description" content="朱凌峰">
   <meta name="author" content="朱凌峰">
   <meta name="keywords" content="">
-  <title>java-http - womine</title>
+  <title>java-httpserver - womine</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      0 字
+      804 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      26
        分钟
     </span>
   
@@ -224,10 +224,145 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">java-http</h1>
+            <h1 style="display: none">java-httpserver</h1>
             
             <div class="markdown-body" id="post-body">
-              
+              <p>之前学 Golang, 发现 Golang 自带 Http 服务器, 自己玩的话, 很方便.<br>但是到 Java 就要引用 tomcat, 感觉很不方便, 就想着自己写个.<br>结果一百度, 发现java从<code>1.6</code>开始就自带了, 既然如此, 那我就直接使用了.<br>所以这儿记录下使用过程中的一些东西. 开始里面的知识会很混乱, 以后再整理吧.</p>
+<h2 id="包"><a href="#包" class="headerlink" title="包"></a>包</h2><p>在 <code>jdk 11</code> 中, 在http服务都在 <code>jdk.httpserver</code> 模块中;<br>分成两个包: <code>com.sun.net.httpserver</code> 和 <code>sun.net.httpserver</code>; 至于有什么区别, 回头再看;<br>刚开始使用, 使用的时候都是使用的 <code>com.sun.net.httpserver</code> 里面的. </p>
+<h2 id="自己写的代码"><a href="#自己写的代码" class="headerlink" title="自己写的代码"></a>自己写的代码</h2><p>Main.java:</p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> net.womine.javahttp;
+
+<span class="hljs-keyword">import</span> com.sun.net.httpserver.HttpServer;
+<span class="hljs-keyword">import</span> net.womine.javahttp.demo.DemoHandler;
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.net.InetSocketAddress;
+<span class="hljs-keyword">import</span> java.util.concurrent.Executors;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        <span class="hljs-keyword">try</span> &#123;
+            <span class="hljs-comment">// 监听端口</span>
+            HttpServer server = HttpServer.create(<span class="hljs-keyword">new</span> InetSocketAddress(<span class="hljs-number">8080</span>), <span class="hljs-number">0</span>);
+            <span class="hljs-comment">// 绑定地址</span>
+            server.createContext(<span class="hljs-string">&quot;/demo&quot;</span>, <span class="hljs-keyword">new</span> DemoHandler());
+            <span class="hljs-comment">// 设置服务器线程池对象</span>
+            server.setExecutor(Executors.newFixedThreadPool(<span class="hljs-number">5</span>));
+            <span class="hljs-comment">//启动服务</span>
+            server.start();
+
+        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+            e.printStackTrace();
+        &#125;
+
+    &#125;
+&#125;</code></pre>
+
+<p>DemoHandler.java</p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> net.womine.javahttp.demo;
+
+<span class="hljs-keyword">import</span> com.alibaba.fastjson.JSONObject;
+<span class="hljs-keyword">import</span> com.sun.net.httpserver.HttpExchange;
+<span class="hljs-keyword">import</span> com.sun.net.httpserver.HttpHandler;
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.io.OutputStream;
+<span class="hljs-keyword">import</span> java.nio.charset.StandardCharsets;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HttpHandler</span> </span>&#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handle</span><span class="hljs-params">(HttpExchange exchange)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
+        <span class="hljs-comment">// 打印exchange消息</span>
+        String exchangeJson = JSONObject.toJSONString(exchange);
+        <span class="hljs-comment">// 设置返回消息</span>
+        <span class="hljs-keyword">byte</span>[] respByte = exchangeJson.getBytes(StandardCharsets.UTF_8);
+        <span class="hljs-comment">//设置响应头</span>
+        exchange.getResponseHeaders().add(<span class="hljs-string">&quot;Content-Type:&quot;</span>, <span class="hljs-string">&quot;application/json&quot;</span>);
+        <span class="hljs-comment">// 设置响应体的长度</span>
+        exchange.sendResponseHeaders(<span class="hljs-number">200</span>, respByte.length);
+        <span class="hljs-comment">// 返回消息</span>
+        OutputStream outputStream = exchange.getResponseBody();
+        outputStream.write(respByte);
+        outputStream.flush();
+        outputStream.close();
+    &#125;
+&#125;</code></pre>
+<p>本地调用了一下,<br>最后返回到页面, 关于 <code>exchange</code> 的json数据:</p>
+<pre><code class="hljs json">&#123;
+    <span class="hljs-attr">&quot;httpContext&quot;</span>: &#123;
+        <span class="hljs-attr">&quot;attributes&quot;</span>: &#123;&#125;,
+        <span class="hljs-attr">&quot;filters&quot;</span>: [],
+        <span class="hljs-attr">&quot;handler&quot;</span>: &#123;&#125;,
+        <span class="hljs-attr">&quot;path&quot;</span>: <span class="hljs-string">&quot;/demo&quot;</span>,
+        <span class="hljs-attr">&quot;protocol&quot;</span>: <span class="hljs-string">&quot;http&quot;</span>,
+        <span class="hljs-attr">&quot;server&quot;</span>: &#123;
+            <span class="hljs-attr">&quot;address&quot;</span>: &#123;
+                <span class="hljs-attr">&quot;address&quot;</span>: <span class="hljs-string">&quot;0:0:0:0:0:0:0:0&quot;</span>,
+                <span class="hljs-attr">&quot;port&quot;</span>: <span class="hljs-number">8080</span>
+            &#125;,
+            <span class="hljs-attr">&quot;executor&quot;</span>: &#123;
+                <span class="hljs-attr">&quot;activeCount&quot;</span>: <span class="hljs-number">1</span>,
+                <span class="hljs-attr">&quot;completedTaskCount&quot;</span>: <span class="hljs-number">2</span>,
+                <span class="hljs-attr">&quot;corePoolSize&quot;</span>: <span class="hljs-number">5</span>,
+                <span class="hljs-attr">&quot;largestPoolSize&quot;</span>: <span class="hljs-number">3</span>,
+                <span class="hljs-attr">&quot;maximumPoolSize&quot;</span>: <span class="hljs-number">5</span>,
+                <span class="hljs-attr">&quot;poolSize&quot;</span>: <span class="hljs-number">3</span>,
+                <span class="hljs-attr">&quot;queue&quot;</span>: [],
+                <span class="hljs-attr">&quot;rejectedExecutionHandler&quot;</span>: &#123;&#125;,
+                <span class="hljs-attr">&quot;shutdown&quot;</span>: <span class="hljs-literal">false</span>,
+                <span class="hljs-attr">&quot;taskCount&quot;</span>: <span class="hljs-number">3</span>,
+                <span class="hljs-attr">&quot;terminated&quot;</span>: <span class="hljs-literal">false</span>,
+                <span class="hljs-attr">&quot;terminating&quot;</span>: <span class="hljs-literal">false</span>,
+                <span class="hljs-attr">&quot;threadFactory&quot;</span>: &#123;&#125;
+            &#125;
+        &#125;
+    &#125;,
+    <span class="hljs-attr">&quot;localAddress&quot;</span>: &#123;
+        <span class="hljs-attr">&quot;address&quot;</span>: <span class="hljs-string">&quot;192.168.1.2&quot;</span>,
+        <span class="hljs-attr">&quot;port&quot;</span>: <span class="hljs-number">8080</span>
+    &#125;,
+    <span class="hljs-attr">&quot;protocol&quot;</span>: <span class="hljs-string">&quot;HTTP/1.1&quot;</span>,
+    <span class="hljs-attr">&quot;remoteAddress&quot;</span>: &#123;
+        <span class="hljs-attr">&quot;address&quot;</span>: <span class="hljs-string">&quot;192.168.1.5&quot;</span>,
+        <span class="hljs-attr">&quot;port&quot;</span>: <span class="hljs-number">60976</span>
+    &#125;,
+    <span class="hljs-attr">&quot;requestHeaders&quot;</span>: &#123;
+        <span class="hljs-attr">&quot;Accept-encoding&quot;</span>: [
+            <span class="hljs-string">&quot;gzip, deflate&quot;</span>
+        ],
+        <span class="hljs-attr">&quot;Accept&quot;</span>: [
+            <span class="hljs-string">&quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9&quot;</span>
+        ],
+        <span class="hljs-attr">&quot;Connection&quot;</span>: [
+            <span class="hljs-string">&quot;keep-alive&quot;</span>
+        ],
+        <span class="hljs-attr">&quot;Host&quot;</span>: [
+            <span class="hljs-string">&quot;192.168.1.2:8080&quot;</span>
+        ],
+        <span class="hljs-attr">&quot;Dnt&quot;</span>: [
+            <span class="hljs-string">&quot;1&quot;</span>
+        ],
+        <span class="hljs-attr">&quot;User-agent&quot;</span>: [
+            <span class="hljs-string">&quot;Mozilla/5.0 (Linux; Android 10; MED-AL20 Build/HUAWEIMED-AL20; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.106 Mobile Safari/537.36&quot;</span>
+        ],
+        <span class="hljs-attr">&quot;Accept-language&quot;</span>: [
+            <span class="hljs-string">&quot;zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7&quot;</span>
+        ],
+        <span class="hljs-attr">&quot;Upgrade-insecure-requests&quot;</span>: [
+            <span class="hljs-string">&quot;1&quot;</span>
+        ],
+        <span class="hljs-attr">&quot;X-requested-with&quot;</span>: [
+            <span class="hljs-string">&quot;mark.via&quot;</span>
+        ]
+    &#125;,
+    <span class="hljs-attr">&quot;requestMethod&quot;</span>: <span class="hljs-string">&quot;GET&quot;</span>,
+    <span class="hljs-attr">&quot;requestURI&quot;</span>: <span class="hljs-string">&quot;/demo&quot;</span>,
+    <span class="hljs-attr">&quot;responseBody&quot;</span>: &#123;&#125;,
+    <span class="hljs-attr">&quot;responseCode&quot;</span>: <span class="hljs-number">-1</span>,
+    <span class="hljs-attr">&quot;responseHeaders&quot;</span>: &#123;&#125;
+&#125;</code></pre>
+<p>2021-12-08: 光看json, 有的还是不知道, 但是还需要先记录下, 以后再慢慢了解.</p>
+<h3 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h3><p>如果自己实现 <code>HttpHandler</code>, 然后再写上 <code>Get</code>, <code>Post</code> 等等方法, 就实现类似Restful的风格的框架了 φ(゜▽゜*)♪</p>
+
             </div>
             <hr>
             <div>
@@ -238,7 +373,7 @@
                     
                       <a class="hover-with-bg" href="/categories/java/">java</a>
                     
-                      <a class="hover-with-bg" href="/categories/java/http%E6%9C%8D%E5%8A%A1%E5%99%A8/">http服务器</a>
+                      <a class="hover-with-bg" href="/categories/java/httpserver/">httpserver</a>
                     
                   </div>
                 
@@ -248,7 +383,7 @@
                     
                       <a class="hover-with-bg" href="/tags/java/">java</a>
                     
-                      <a class="hover-with-bg" href="/tags/http%E6%9C%8D%E5%8A%A1%E5%99%A8/">http服务器</a>
+                      <a class="hover-with-bg" href="/tags/httpserver/">httpserver</a>
                     
                   </div>
                 
@@ -423,7 +558,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "java-http&nbsp;",
+        "java-httpserver&nbsp;",
       ],
       cursorChar: "|",
       typeSpeed: 100,

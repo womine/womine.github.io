@@ -292,10 +292,10 @@ Spring Cloud
           
             
           
-          服务注册与发现EurekaEureka Client：负责将这个服务的信息注册到Eureka Server中
+          restTemplate一个 Spring 用来调用 http 接口的工具
+服务注册与发现EurekaEureka Client：负责将这个服务的信息注册到Eureka Server中
 Eureka Server：注册中心，里面有一个注册表，保存了各个服务所在的机器和端口号
-各个服务启动时，Eureka Client都会将服务注册到Eureka Server，并且Eureka Client还可以反过来从Eureka Server拉取注册表，从而知道其他服务在哪里
-Naco
+各个服务启动时，Eureka Client都会将服务注册到Eureka Server，并且Eureka Client还可以反
         </a>
       </p>
 
@@ -450,7 +450,7 @@ npm init
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/12/16/java/http/">java-http</a>
+        <a href="/2020/12/16/java/http/">java-httpserver</a>
       </h1>
 
       <p class="index-excerpt">
@@ -459,7 +459,8 @@ npm init
           
             
           
-          
+          之前学 Golang, 发现 Golang 自带 Http 服务器, 自己玩的话, 很方便.但是到 Java 就要引用 tomcat, 感觉很不方便, 就想着自己写个.结果一百度, 发现java从1.6开始就自带了, 既然如此, 那我就直接使用了.所以这儿记录下使用过程中的一些东西. 开始里面的知识会很混乱, 以后再整理吧.
+包在 jdk 11 中, 在http服务都在 jdk.httpserve
         </a>
       </p>
 
@@ -478,7 +479,7 @@ npm init
             
               <a href="/categories/java/">java</a>
             
-              <a href="/categories/java/http%E6%9C%8D%E5%8A%A1%E5%99%A8/">http服务器</a>
+              <a href="/categories/java/httpserver/">httpserver</a>
             
           </div>
         
@@ -488,7 +489,7 @@ npm init
             
               <a href="/tags/java/">java</a>
             
-              <a href="/tags/http%E6%9C%8D%E5%8A%A1%E5%99%A8/">http服务器</a>
+              <a href="/tags/httpserver/">httpserver</a>
             
           </div>
         

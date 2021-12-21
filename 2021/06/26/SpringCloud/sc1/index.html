@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      422 字
+      842 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      20
        分钟
     </span>
   
@@ -227,7 +227,8 @@
             <h1 style="display: none">SpringCloud学习(组件列表)</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="服务注册与发现"><a href="#服务注册与发现" class="headerlink" title="服务注册与发现"></a>服务注册与发现</h1><h2 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h2><p>Eureka Client：负责将这个服务的信息注册到Eureka Server中</p>
+              <h2 id="restTemplate"><a href="#restTemplate" class="headerlink" title="restTemplate"></a>restTemplate</h2><p>一个 Spring 用来调用 http 接口的工具</p>
+<h1 id="服务注册与发现"><a href="#服务注册与发现" class="headerlink" title="服务注册与发现"></a>服务注册与发现</h1><h2 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h2><p>Eureka Client：负责将这个服务的信息注册到Eureka Server中</p>
 <p>Eureka Server：注册中心，里面有一个注册表，保存了各个服务所在的机器和端口号</p>
 <p>各个服务启动时，Eureka Client都会将服务注册到Eureka Server，并且Eureka Client还可以反过来从Eureka Server拉取注册表，从而知道其他服务在哪里</p>
 <h2 id="Nacos"><a href="#Nacos" class="headerlink" title="Nacos"></a>Nacos</h2><p>一个更易于构建云原生应用的 <code>动态服务发现</code> 、 <code>配置管理</code> 和 <code>服务管理</code> 平台。</p>
@@ -244,6 +245,33 @@
 <p>发起请求是通过Hystrix的线程池来走的，不同的服务走不同的线程池，实现了不同服务调用的隔离，避免了服务雪崩的问题</p>
 <h2 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h2><p>作用是负载均衡</p>
 <p>客户端负载均衡</p>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="2021-12-21"><a href="#2021-12-21" class="headerlink" title="2021-12-21"></a>2021-12-21</h2><p>今天在重新学习 eureka 时， 出现了一个报错：</p>
+<pre><code class="hljs sql">Batch <span class="hljs-keyword">update</span> <span class="hljs-keyword">failure</span> <span class="hljs-keyword">with</span> <span class="hljs-keyword">HTTP</span> <span class="hljs-keyword">status</span> code <span class="hljs-number">404</span>; discarding 1 replication tasks
+Discarding 1 tasks of TaskBatchingWorker-target_eureka7003.com-7 due to permanent error
+Batch <span class="hljs-keyword">update</span> <span class="hljs-keyword">failure</span> <span class="hljs-keyword">with</span> <span class="hljs-keyword">HTTP</span> <span class="hljs-keyword">status</span> code <span class="hljs-number">404</span>; discarding 1 replication tasks
+Batch <span class="hljs-keyword">update</span> <span class="hljs-keyword">failure</span> <span class="hljs-keyword">with</span> <span class="hljs-keyword">HTTP</span> <span class="hljs-keyword">status</span> code <span class="hljs-number">404</span>; discarding 1 replication tasks
+Discarding 1 tasks of TaskBatchingWorker-target_eureka7003.com-7 due to permanent error
+Discarding 1 tasks of TaskBatchingWorker-target_eureka7002.com-0 due to permanent error</code></pre>
+<p>这个错误一直在滚动，查百度都说密码的问题，但是经过排查，其实是eureka配置的问题。</p>
+<p>正常的 eureka 配置应该是:</p>
+<pre><code class="hljs yml"><span class="hljs-attr">eureka:</span>
+    <span class="hljs-attr">instance:</span>
+        <span class="hljs-attr">hostname:</span> <span class="hljs-string">eureka7001.com</span>    <span class="hljs-comment"># eureka服务端的实例名称</span>
+    <span class="hljs-attr">client:</span>
+        <span class="hljs-attr">register-with-eureka:</span> <span class="hljs-literal">false</span>    <span class="hljs-comment"># false表示不需要注册, 因为注册中心不需要自己注册自己</span>
+        <span class="hljs-attr">fetch-registry:</span> <span class="hljs-literal">false</span>          <span class="hljs-comment"># false表示自己就是注册中心, 职责是维护服务,不是检索服务</span>
+        <span class="hljs-attr">service-url:</span>
+            <span class="hljs-attr">defaultZone:</span> <span class="hljs-string">http://eureka7002.com:7002/eureka/,http://admin:admin@eureka7003.com:7003/eureka/</span>  <span class="hljs-comment"># 设置eureka service交互地址查询服务</span></code></pre>
+<p>但是, 我写的是:</p>
+<pre><code class="hljs yml"><span class="hljs-attr">eureka:</span>
+    <span class="hljs-attr">instance:</span>
+        <span class="hljs-attr">hostname:</span> <span class="hljs-string">eureka7001.com</span>    <span class="hljs-comment"># eureka服务端的实例名称</span>
+    <span class="hljs-attr">client:</span>
+        <span class="hljs-attr">register-with-eureka:</span> <span class="hljs-literal">false</span>    <span class="hljs-comment"># false表示不需要注册, 因为注册中心不需要自己注册自己</span>
+        <span class="hljs-attr">fetch-registry:</span> <span class="hljs-literal">false</span>          <span class="hljs-comment"># false表示自己就是注册中心, 职责是维护服务,不是检索服务</span>
+        <span class="hljs-attr">service-url:</span>
+            <span class="hljs-attr">defaultZone:</span> <span class="hljs-string">http://eureka7002.com:7002/,http://admin:admin@eureka7003.com:7003/</span>  <span class="hljs-comment"># 设置eureka service交互地址查询服务</span></code></pre>
+<p>其实就是 <code>defaultZone</code> 配置的服务地址少了 <code>eureka/</code>,<br>通过百度查询, 在<a target="_blank" rel="noopener" href="https://www.cnblogs.com/StarkBrothers/p/11974026.html">这儿</a> 看到一篇关于 <code>eureka/</code> 后缀的描述,<br>看完后, 个人猜测应该少了 <code>eureka/</code> 后导致 springcloud 无法识别注册的服务是否是 eureka 服务, 所以就一直报错.</p>
 
             </div>
             <hr>
