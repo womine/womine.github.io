@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      842 字
+      1.1k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      20
+      27
        分钟
     </span>
   
@@ -227,10 +227,22 @@
             <h1 style="display: none">SpringCloud学习(组件列表)</h1>
             
             <div class="markdown-body" id="post-body">
-              <h2 id="restTemplate"><a href="#restTemplate" class="headerlink" title="restTemplate"></a>restTemplate</h2><p>一个 Spring 用来调用 http 接口的工具</p>
+              <h2 id="restTemplate"><a href="#restTemplate" class="headerlink" title="restTemplate"></a>restTemplate</h2><p>一个 Spring 用来调用 http 接口的工具<br><code>@LoadBalanced</code>：template自带的负载均衡,这样就可以通过服务名称负载均衡</p>
 <h1 id="服务注册与发现"><a href="#服务注册与发现" class="headerlink" title="服务注册与发现"></a>服务注册与发现</h1><h2 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h2><p>Eureka Client：负责将这个服务的信息注册到Eureka Server中</p>
 <p>Eureka Server：注册中心，里面有一个注册表，保存了各个服务所在的机器和端口号</p>
 <p>各个服务启动时，Eureka Client都会将服务注册到Eureka Server，并且Eureka Client还可以反过来从Eureka Server拉取注册表，从而知道其他服务在哪里</p>
+<h3 id="Spring-Boot-Actuator"><a href="#Spring-Boot-Actuator" class="headerlink" title="Spring Boot Actuator"></a>Spring Boot Actuator</h3><p>Spring Boot Actuator端点通过 JMX 和HTTP 公开暴露给外界访问，大多数时候我们使用基于HTTP的Actuator端点，因为它们很容易通过浏览器、CURL命令、shell脚本等方式访问。 </p>
+<h3 id="服务发现Discovery"><a href="#服务发现Discovery" class="headerlink" title="服务发现Discovery"></a>服务发现Discovery</h3><p>在集群模式下，多个服务之间获取信息，会用到服务发现插件。<br>启用服务发现 <code>@EnableDiscoveryClient</code></p>
+<pre><code class="hljs java"><span class="hljs-meta">@Autowired</span>
+<span class="hljs-keyword">private</span> DiscoveryClient discoveryClient;  <span class="hljs-comment">// 服务发现对象</span></code></pre>
+<h3 id="eureka自我保护机制"><a href="#eureka自我保护机制" class="headerlink" title="eureka自我保护机制"></a>eureka自我保护机制</h3><p>在某一刻，一个微服务不可用了，eureka不会立即删除该服务，这种机制就eureka的自我保护机制。<br>这样有个好处：避免因为网路卡顿造成误删服务的情况。<br>属于<code>CAP</code>里面的<code>AP</code>分支<br>如何让设置eureka的自我保护机制：</p>
+<pre><code class="hljs YML"><span class="hljs-attr">eureka:</span>
+    <span class="hljs-attr">server:</span>
+        <span class="hljs-attr">enable-self-preservation:</span> <span class="hljs-literal">true</span>   <span class="hljs-comment"># 关闭自我保护机制</span>
+    <span class="hljs-attr">instance:</span>
+        <span class="hljs-attr">lease-renewal-interval-in-seconds:</span> <span class="hljs-number">1</span> <span class="hljs-comment"># 间隔1秒发送心跳</span>
+        <span class="hljs-attr">lease-expiration-duration-in-seconds:</span> <span class="hljs-number">2</span> <span class="hljs-comment"># 超过2秒没有发送心跳即删除服务(服务器等待最后一次心跳的上限)</span></code></pre>
+<p>这个设置应该是设置在eureka服务端上的。</p>
 <h2 id="Nacos"><a href="#Nacos" class="headerlink" title="Nacos"></a>Nacos</h2><p>一个更易于构建云原生应用的 <code>动态服务发现</code> 、 <code>配置管理</code> 和 <code>服务管理</code> 平台。</p>
 <h3 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h3><p>用 nacos 做 SPringBoot 的配置管理时, 每次修改了配置信息, SpringBoot 控制台会输出一条日志, 格式如下:</p>
 <pre><code class="hljs gherkin">Replacing PropertySource &#x27;resume|<span class="hljs-string">DEFAULT_GROUP</span>|||<span class="hljs-string">127.0.0.1:8848</span>|||||<span class="hljs-string">UTF-8</span>||<span class="hljs-string">&#x27; with &#x27;resume</span>|<span class="hljs-string">DEFAULT_GROUP</span>|||<span class="hljs-string">127.0.0.1:8848</span>|||||<span class="hljs-string">UTF-8</span>||<span class="hljs-string">&#x27;</span></code></pre>

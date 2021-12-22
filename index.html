@@ -292,10 +292,10 @@ Spring Cloud
           
             
           
-          restTemplate一个 Spring 用来调用 http 接口的工具
+          restTemplate一个 Spring 用来调用 http 接口的工具@LoadBalanced：template自带的负载均衡,这样就可以通过服务名称负载均衡
 服务注册与发现EurekaEureka Client：负责将这个服务的信息注册到Eureka Server中
 Eureka Server：注册中心，里面有一个注册表，保存了各个服务所在的机器和端口号
-各个服务启动时，Eureka Client都会将服务注册到Eureka Server，并且Eureka Client还可以反
+各个服务启动时，Eureka Cl
         </a>
       </p>
 
@@ -392,6 +392,58 @@ window 10 64位 家庭版
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
+        <a href="/2020/12/16/java/http/">java-httpserver</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/12/16/java/http/">
+          
+          
+            
+          
+          之前学 Golang, 发现 Golang 自带 Http 服务器, 自己玩的话, 很方便.但是到 Java 就要引用 tomcat, 感觉很不方便, 就想着自己写个.结果一百度, 发现java从1.6开始就自带了, 既然如此, 那我就直接使用了.所以这儿记录下使用过程中的一些东西. 开始里面的知识会很混乱, 以后再整理吧.
+包在 jdk 11 中, 在http服务都在 jdk.httpserve
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-12-16 19:57" pubdate>
+              2020-12-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/java/">java</a>
+            
+              <a href="/categories/java/httpserver/">httpserver</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/java/">java</a>
+            
+              <a href="/tags/httpserver/">httpserver</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
         <a href="/2020/12/16/react/%E5%88%9B%E5%BB%BAnext/">创建next.js</a>
       </h1>
 
@@ -438,58 +490,6 @@ npm init
               <a href="/tags/react/">react</a>
             
               <a href="/tags/next-js/">next.js</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/12/16/java/http/">java-httpserver</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/12/16/java/http/">
-          
-          
-            
-          
-          之前学 Golang, 发现 Golang 自带 Http 服务器, 自己玩的话, 很方便.但是到 Java 就要引用 tomcat, 感觉很不方便, 就想着自己写个.结果一百度, 发现java从1.6开始就自带了, 既然如此, 那我就直接使用了.所以这儿记录下使用过程中的一些东西. 开始里面的知识会很混乱, 以后再整理吧.
-包在 jdk 11 中, 在http服务都在 jdk.httpserve
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-12-16 19:57" pubdate>
-              2020-12-16
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/java/">java</a>
-            
-              <a href="/categories/java/httpserver/">httpserver</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/java/">java</a>
-            
-              <a href="/tags/httpserver/">httpserver</a>
             
           </div>
         
