@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.1k 字
+      1.8k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      27
+      41
        分钟
     </span>
   
@@ -249,14 +249,44 @@
 
 <h2 id="Consul"><a href="#Consul" class="headerlink" title="Consul"></a>Consul</h2><p>Consul包含多个组件,但是作为一个整体,为你的基础设施提供 <code>服务发现</code> 和 <code>服务配置</code> 的工具。 </p>
 <h1 id="API网关"><a href="#API网关" class="headerlink" title="API网关"></a>API网关</h1><h2 id="Kong"><a href="#Kong" class="headerlink" title="Kong"></a>Kong</h2><h2 id="Getwagy"><a href="#Getwagy" class="headerlink" title="Getwagy"></a>Getwagy</h2><h2 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h2><p>如果前端、移动端要调用后端系统，统一从Zuul网关进入，由Zuul网关转发请求给对应的服务</p>
-<h1 id=""><a href="#" class="headerlink" title="??"></a>??</h1><p>Ribbon：<br>服务间发起请求的时候，基于Ribbon做负载均衡，从一个服务的多台机器中选择一台</p>
-<h2 id="Feign"><a href="#Feign" class="headerlink" title="Feign"></a>Feign</h2><p>动态代理，</p>
-<p>声明式Restful调用</p>
-<p>基于Feign的动态代理机制，根据注解和选择的机器，拼接请求URL地址，发起请求</p>
+<h1 id="负载均衡服务调用"><a href="#负载均衡服务调用" class="headerlink" title="负载均衡服务调用"></a>负载均衡服务调用</h1><h2 id="Ribbon："><a href="#Ribbon：" class="headerlink" title="Ribbon："></a>Ribbon：</h2><p>提供客户端的软件负载均衡算法和服务调用。<br>服务间发起请求的时候，基于Ribbon做负载均衡，从一个服务的多台机器中选择一台</p>
+<h2 id="IRule"><a href="#IRule" class="headerlink" title="IRule"></a>IRule</h2><p>ribbon的算法插件<br>可以根据特定算法中从服务列表中选取一个要访问的服务</p>
+<h1 id="服务接口调用"><a href="#服务接口调用" class="headerlink" title="服务接口调用"></a>服务接口调用</h1><h2 id="OpenFeign"><a href="#OpenFeign" class="headerlink" title="OpenFeign"></a>OpenFeign</h2><p>动态代理，<br>声明式Restful调用<br>基于Feign的动态代理机制，根据注解和选择的机器，拼接请求URL地址，发起请求  </p>
+<p>就是用来在自己服务写一个对接其他服务接口的接口</p>
 <h2 id="Hystrix"><a href="#Hystrix" class="headerlink" title="Hystrix"></a>Hystrix</h2><p>隔离、熔断以及降级的一个框架</p>
 <p>发起请求是通过Hystrix的线程池来走的，不同的服务走不同的线程池，实现了不同服务调用的隔离，避免了服务雪崩的问题</p>
+<h3 id="服务降级"><a href="#服务降级" class="headerlink" title="服务降级"></a>服务降级</h3><p>就是一个服务出现异常了, 或者请求时间超时了, 需要一个其他方法来处理异常或者超, 并返回相关错误信息.</p>
+<p><code>OpenFeign</code>也可以配置服务降级的, 只需要实现接口, 然后对应接口方法写降级逻辑, 并在Feign配置callback即可</p>
+<h3 id="服务熔断"><a href="#服务熔断" class="headerlink" title="服务熔断"></a>服务熔断</h3><p>感觉就是多个调用出现问题后, 暂停后续调用的机制.<br>可以避免无效调用.  </p>
+<h3 id="Hystrix-dashboard"><a href="#Hystrix-dashboard" class="headerlink" title="Hystrix dashboard"></a>Hystrix dashboard</h3><p>可视化监控服务情况的.</p>
+<h3 id="服务隔离"><a href="#服务隔离" class="headerlink" title="服务隔离"></a>服务隔离</h3><p>???</p>
+<h1 id="网关"><a href="#网关" class="headerlink" title="网关"></a>网关</h1><h2 id="geteway"><a href="#geteway" class="headerlink" title="geteway"></a>geteway</h2><h3 id="三大核心概念"><a href="#三大核心概念" class="headerlink" title="三大核心概念"></a>三大核心概念</h3><ol>
+<li>路由  </li>
+<li>断言  </li>
+<li>过滤  </li>
+</ol>
+<h3 id="路由配置"><a href="#路由配置" class="headerlink" title="路由配置"></a>路由配置</h3><ol>
+<li>yml配置</li>
+<li>硬编码<br>需要<code>RouteLocator</code>的bean</li>
+</ol>
+<h3 id="Predicate-断言"><a href="#Predicate-断言" class="headerlink" title="Predicate(断言)"></a>Predicate(断言)</h3><p>有请求过来时, 通过<code>Predicate</code>配置, 可以决定由请求拿一些服务.</p>
+<p>有点类似过滤器, 但是他拦截的时指定配置的请求.</p>
 <h2 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h2><p>作用是负载均衡</p>
 <p>客户端负载均衡</p>
+<h2 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h2><p>Spring cloud config 是用来分布式集中配置的的, 可以配合git用来管理所有服务的公用配置, 达到一处更新, 处处更新的目的.</p>
+<h3 id="bootstrap-yml"><a href="#bootstrap-yml" class="headerlink" title="bootstrap.yml"></a>bootstrap.yml</h3><p>系统级别的配置文件, 优先级比<code>application.yml</code>更高.</p>
+<h3 id="动态刷新"><a href="#动态刷新" class="headerlink" title="动态刷新"></a>动态刷新</h3><p>可以配合使用 <code>actuator</code> 实现动态刷新配置文件.</p>
+<h2 id="bus"><a href="#bus" class="headerlink" title="bus"></a>bus</h2><p>消息总线<br>我的理解是: 用来广播配置更新的.</p>
+<p>比如: 当config中配置修改了, 我们只需要通知其中一个3355服务器更新配置, 让3355去自动通知其他服务更新配置,<br>这样可以避免修改配置后, 需要点击多次去更新服务器配置.</p>
+<h2 id="cloud-Stream"><a href="#cloud-Stream" class="headerlink" title="cloud Stream"></a>cloud Stream</h2><p>消息驱动: 将市场上常用消息中间件抽象, 方便开发人员使用.</p>
+<p>推送RabbitMQ时, 相同消费则配置一个组, 这样可以保证同一个组只会消费一次.</p>
+<h3 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h3><p>生产者生产产生了一个消息, 如果没有消费者消费, 那么, RabbitMQ 会保存该消息, 直到有消费者消费.<br>这种模式就是<code>持久化</code></p>
+<h2 id="Sleuth"><a href="#Sleuth" class="headerlink" title="Sleuth"></a>Sleuth</h2><p>链路跟踪, 查看请求都访问了哪些服务的工具</p>
+<h2 id="Nacos-1"><a href="#Nacos-1" class="headerlink" title="Nacos"></a>Nacos</h2><p>一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。</p>
+<p>Nacos就是注册中心 + 配置中心的组合</p>
+<p>Alibaba开发的组件</p>
+<h2 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h2><p>服务熔断与限流工具</p>
+<p>Alibaba开发的组件</p>
 <h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="2021-12-21"><a href="#2021-12-21" class="headerlink" title="2021-12-21"></a>2021-12-21</h2><p>今天在重新学习 eureka 时， 出现了一个报错：</p>
 <pre><code class="hljs sql">Batch <span class="hljs-keyword">update</span> <span class="hljs-keyword">failure</span> <span class="hljs-keyword">with</span> <span class="hljs-keyword">HTTP</span> <span class="hljs-keyword">status</span> code <span class="hljs-number">404</span>; discarding 1 replication tasks
 Discarding 1 tasks of TaskBatchingWorker-target_eureka7003.com-7 due to permanent error
@@ -328,8 +358,8 @@ Discarding 1 tasks of TaskBatchingWorker-target_eureka7002.com-0 due to permanen
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/12/16/beego/first/">
-                        <span class="hidden-mobile">beego2学习</span>
+                      <a href="/2020/12/16/react/%E5%88%9B%E5%BB%BAnext/">
+                        <span class="hidden-mobile">创建next.js</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
