@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.8k 字
+      2.1k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      41
+      47
        分钟
     </span>
   
@@ -287,6 +287,23 @@
 <p>Alibaba开发的组件</p>
 <h2 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h2><p>服务熔断与限流工具</p>
 <p>Alibaba开发的组件</p>
+<h3 id="流控"><a href="#流控" class="headerlink" title="流控"></a>流控</h3><p>流量控制, 就是控制访问量的</p>
+<ol>
+<li>直接</li>
+<li>关联<br>关联就是: A服务挂了, 让B服务降级; 比如: 支付接口挂了, 就让下订单的接口降级.</li>
+<li>链路</li>
+</ol>
+<h3 id="降级"><a href="#降级" class="headerlink" title="降级"></a>降级</h3><ol>
+<li>RT<br>大于平均响应时间就会降级.</li>
+<li>异常比例<br>出现异常的比例超过阈值, 就会降级.</li>
+<li>异常数<br>出现异常的数量超过阈值, 就会降级.</li>
+</ol>
+<h3 id="热点key限流"><a href="#热点key限流" class="headerlink" title="热点key限流"></a>热点key限流</h3><p>何为热点: 热点即经常访问的数据</p>
+<p>就是通过一个参数来动态限制接口的访问.<br>比如: 在一个接口中, 第一个参数为 1 时, 每秒访问5次, 超过就降级;<br>第一个参数为 5 时, 每秒访问可以允许访问 100 次.</p>
+<h3 id="系统规则"><a href="#系统规则" class="headerlink" title="系统规则"></a>系统规则</h3><p>系统级别的规则: 比如按照CPU核心数, CPU的利用路, 总访问数来配置.</p>
+<h3 id="SentinelResource"><a href="#SentinelResource" class="headerlink" title="@SentinelResource"></a>@SentinelResource</h3><p>这个注解可以支持用户自定义服务降级时的兜底方法.</p>
+<h3 id="服务降级-1"><a href="#服务降级-1" class="headerlink" title="服务降级"></a>服务降级</h3><p><code>fallback</code> 和 <code>blockhandler</code>:<br><code>fallback</code> 是: 有异常就降级<br><code>blockhander</code> 是: 达到异常比例就降级.</p>
+<p>如果 <code>fallback</code> 和 <code>blockhander</code> 都有, 就走 <code>blockhander</code></p>
 <h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="2021-12-21"><a href="#2021-12-21" class="headerlink" title="2021-12-21"></a>2021-12-21</h2><p>今天在重新学习 eureka 时， 出现了一个报错：</p>
 <pre><code class="hljs sql">Batch <span class="hljs-keyword">update</span> <span class="hljs-keyword">failure</span> <span class="hljs-keyword">with</span> <span class="hljs-keyword">HTTP</span> <span class="hljs-keyword">status</span> code <span class="hljs-number">404</span>; discarding 1 replication tasks
 Discarding 1 tasks of TaskBatchingWorker-target_eureka7003.com-7 due to permanent error
