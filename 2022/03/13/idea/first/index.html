@@ -17,7 +17,7 @@
   <meta name="description" content="朱凌峰">
   <meta name="author" content="朱凌峰">
   <meta name="keywords" content="">
-  <title>git常用命令 - womine</title>
+  <title>idea配置tomcat项目 - womine</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -160,8 +160,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-12-13 18:31" pubdate>
-        2020年12月13日 晚上
+      <time datetime="2022-03-13 11:02" pubdate>
+        2022年3月13日 上午
       </time>
     </span>
   
@@ -172,7 +172,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      94 字
+      736 字
     </span>
   
 
@@ -182,7 +182,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      15
        分钟
     </span>
   
@@ -212,15 +212,46 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">git常用命令</h1>
+            <h1 style="display: none">idea配置tomcat项目</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h1><h2 id="删除远程分支-分支名称-darft"><a href="#删除远程分支-分支名称-darft" class="headerlink" title="删除远程分支(分支名称: darft)"></a>删除远程分支(分支名称: darft)</h2><p><code>git push origin --delete darft</code></p>
-<h2 id="增加文件到办本地"><a href="#增加文件到办本地" class="headerlink" title="增加文件到办本地:"></a>增加文件到办本地:</h2><p><code>git add [文件名]</code></p>
-<h2 id="提交到本地"><a href="#提交到本地" class="headerlink" title="提交到本地:"></a>提交到本地:</h2><p><code>git commit -m &quot;备注&quot;</code> (<strong>备注必须存在, 随便写点都可以</strong>)</p>
-<h2 id="提交到远程"><a href="#提交到远程" class="headerlink" title="提交到远程:"></a>提交到远程:</h2><p><code>git push</code></p>
-<h2 id="从远程仓库获取最新的版本到本地的-tmp-分支上"><a href="#从远程仓库获取最新的版本到本地的-tmp-分支上" class="headerlink" title="从远程仓库获取最新的版本到本地的 tmp 分支上"></a>从远程仓库获取最新的版本到本地的 tmp 分支上</h2><p><code>git fetch</code></p>
-<h2 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h2><p><code>git merge</code></p>
+              <p>记一次idea的配置：</p>
+<p>公司的项目是个老项目，还用tomcat的那种，然后 IDE 我下载最新的 idea（2021.3）版本。所以很多配置并不自动化，需要自己配置。<br>折腾了老半天，最后基本成型。以此记录下，用于以后参考。</p>
+<h2 id="刚开始"><a href="#刚开始" class="headerlink" title="刚开始"></a>刚开始</h2><ol>
+<li>首先是从svn下载项目；</li>
+<li>用idea打开；</li>
+</ol>
+<h3 id="然后选择模块（module）选项卡"><a href="#然后选择模块（module）选项卡" class="headerlink" title="然后选择模块（module）选项卡"></a>然后选择模块（module）选项卡</h3><ol>
+<li><p>按 <code>ctrl</code> + <code>shift</code> + <code>alt</code> + <code>s</code> 打开项目配置面板<br><img src="/img/idea/20220313001.png" srcset="/img/loading.gif" alt="图片加载失败"><br>先配置sdk，我本地有jdk7，所以就选择了本地jdk<br>编译输出路径比变。后面有可以手动指定的地方。</p>
+</li>
+<li><p>选择模块（module）选项卡</p>
+<ol>
+<li><p>这儿需要把 <code>webapp</code> 指定为排除的。<br><img src="/img/idea/20220313002.png" srcset="/img/loading.gif" alt="图片加载失败"> </p>
+</li>
+<li><p>选择<code>路径</code>选项卡<br><img src="/img/idea/20220313003.png" srcset="/img/loading.gif" alt="图片加载失败"><br>这儿需要自己手动指定目录，<br>如果选择“继承项目编译输出路径”， 你会发现：下面的输出目录就是项目里面的编译输出路径，如图：<br><img src="/img/idea/20220313004.png" srcset="/img/loading.gif" alt="图片加载失败">  </p>
+</li>
+<li><p><code>依赖</code>选项卡<br><img src="/img/idea/20220313005.png" srcset="/img/loading.gif" alt="图片加载失败">  </p>
+</li>
+<li><p>项目虽然用spring，但是也只有用spring ioc 这些。所以下面的 <code>spring</code> 模块直接不管。选择 <code>web</code> 模块。如图：<br><img src="/img/idea/20220313006.png" srcset="/img/loading.gif" alt="图片加载失败">    </p>
+</li>
+</ol>
+</li>
+<li><p>选择库（）选项卡<br>这里面需要相关外部依赖加入进来。<br>我们这个项目的外部依赖集中在 webapp\lib 目录下，<br><img src="/img/idea/20220313007.png" srcset="/img/loading.gif" alt="图片加载失败"><br><img src="/img/idea/20220313008.png" srcset="/img/loading.gif" alt="图片加载失败"><br><img src="/img/idea/20220313009.png" srcset="/img/loading.gif" alt="图片加载失败"><br>当然，也可以一个一个jar包添加进来：<br><img src="/img/idea/20220313010.png" srcset="/img/loading.gif" alt="图片加载失败"><br>手动添加进来的jar就会展示成这样：<br><img src="/img/idea/20220313011.png" srcset="/img/loading.gif" alt="图片加载失败"><br>（一个小技巧：手动选择jar包时，可以按住 <code>ctrl</code> 或 <code>shift</code> 实现批量选择。）</p>
+</li>
+<li><p>facet 选择卡<br>进入 <code>facet</code> 选项卡，会发现和 模块界面里面差不多的，配置也是一样的，这儿就不多说了。<br><img src="/img/idea/20220313012.png" srcset="/img/loading.gif" alt="图片加载失败">  </p>
+</li>
+<li><p>进入工件（）选项卡<br><img src="/img/idea/20220313013.png" srcset="/img/loading.gif" alt="图片加载失败"> </p>
+</li>
+<li><p>配置tomcat<br>tomcat 配置默认的就好，就不多说了。<br><img src="/img/idea/20220313014.png" srcset="/img/loading.gif" alt="图片加载失败"><br><img src="/img/idea/20220313015.png" srcset="/img/loading.gif" alt="图片加载失败"><br><img src="/img/idea/20220313016.png" srcset="/img/loading.gif" alt="图片加载失败"><br>这儿建议把“应用程序上下文”都配上，访问的时候好区分。</p>
+</li>
+<li><p>启动tomcat，访问<br><img src="/img/idea/20220313017.png" srcset="/img/loading.gif" alt="图片加载失败">   </p>
+</li>
+</ol>
+<h2 id="然后"><a href="#然后" class="headerlink" title="然后"></a>然后</h2><p>然后，我发现个问题，<code>webapp</code> 配置了排除后，整个文件夹就红了。看着就不对劲。<br><img src="/img/idea/20220313018.png" srcset="/img/loading.gif" alt="图片加载失败"><br>git里面，新增没有提交到本地的，也是红色的。这样看着就别扭了。<br>然后我想到：一开始学idea的时候，idea是会默认输出到项目根目录一个文件夹里面的。所以我想，在不排除webapp的情况下，将webapp和编译后的文件都输出到项目外的一个目录中，然后由tomcat启动。</p>
+<p>百度查到：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1526929">https://cloud.tencent.com/developer/article/1526929</a> 看完基本就明白了。</p>
+<p>爽！</p>
+<p>但是，在配置中遇到些意外：<br>配置完成后，idea 会自动构建项目，如果这个过程中要是删了刚构建的的一些文件（尤其是配置文件和jar包）。然后就再也启动不了，任我如何 build、重启，都不会再触发构建。最后只有吧构建目录改了，让idea再来一次，才成功。  </p>
+<p>不得不说：idea 虽然很好，但是还不到智能程度，一旦有个骚操作，idea就歇菜了 ≡(▔﹏▔)≡</p>
 
             </div>
             <hr>
@@ -230,7 +261,9 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/git/">git</a>
+                      <a class="hover-with-bg" href="/categories/IDE/">IDE</a>
+                    
+                      <a class="hover-with-bg" href="/categories/IDE/idea/">idea</a>
                     
                   </div>
                 
@@ -238,9 +271,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/git/">git</a>
+                      <a class="hover-with-bg" href="/tags/IDE/">IDE</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%91%BD%E4%BB%A4/">命令</a>
+                      <a class="hover-with-bg" href="/tags/idea/">idea</a>
                     
                   </div>
                 
@@ -253,18 +286,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/12/16/mangodb/first/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">第一篇mongoDB</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/10/01/hello-world/">
-                        <span class="hidden-mobile">第一个博客</span>
+                      <a href="/2021/12/05/SpringCloud/Jubilee/">
+                        <span class="hidden-mobile">SpringCloud日志</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -415,7 +442,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "git常用命令&nbsp;",
+        "idea配置tomcat项目&nbsp;",
       ],
       cursorChar: "|",
       typeSpeed: 100,
